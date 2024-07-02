@@ -42,7 +42,7 @@ const isValidMinion = (instance)=>{
     return true
 }
 
-const allMinions = new Array(10).fill(0).map(createMinion);
+const allMinions = new Array(10).fill(null).map(createMinion);
 
 module.exports = {
   createMinion,

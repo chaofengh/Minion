@@ -36,7 +36,7 @@ const isValidMeeting = (instance)=>{
     return true
 }
 
-const allMeetings = new Array(3).fill(0).map(createMeeting);
+const allMeetings = new Array(3).fill(null).map(createMeeting);
 
 module.exports = {
   createMeeting,
