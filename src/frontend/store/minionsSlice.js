@@ -1,5 +1,4 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import { json } from "body-parser";
 
 export const fetchMinions = createAsyncThunk('minions/fetchMinions', async ()=>{
     const response = await fetch('http://localhost:4001/api/minions')

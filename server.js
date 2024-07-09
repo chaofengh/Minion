@@ -1,13 +1,15 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const apiRouter = require('./src/backend/api')
 
-const PORT = 4001;
 
 
+const app = express();
+const PORT = process.env.PORT || 4001;
 app.use(cors())
 app.use(bodyParser.json())
+app.use('./api',apiRouter)
 
 module.exports = app;
 

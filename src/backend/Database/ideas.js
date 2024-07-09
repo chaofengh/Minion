@@ -1,4 +1,5 @@
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
+
 
 let ideaIdCounter = 1;
 const companies = [
@@ -11,7 +12,7 @@ const companies = [
 ];
 
 const createIdea = () => {
-  const noun = faker.company.bsNoun();
+  const noun = faker.company.buzzNoun();
   const name = companies[Math.floor(Math.random() * companies.length)];
   let weeklyRevenue = 0;
   let numWeeks = 0;

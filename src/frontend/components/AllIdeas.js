@@ -44,3 +44,4 @@ const AllIdeas = ()=>{
         </div>
     )
 }
+export default AllIdeas;

@@ -1,4 +1,5 @@
-const faker = require('faker');
+const { faker } = require('@faker-js/faker');
+
 const { allMinions } = require('./minions');
 
 let workIdCounter = 1;

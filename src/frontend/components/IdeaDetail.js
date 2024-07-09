@@ -25,7 +25,7 @@ const IdeaDetail = ({idea})=>{
                 </div>
             </div>
             {isEditing? (
-                <ideaEdit idea={idea} setIsEditing={setIsEditing} />
+                <IdeaEdit idea={idea} setIsEditing={setIsEditing} />
             ):(
                 <button onClick ={handleEdit} >Edit</button>
             )}

@@ -26,7 +26,7 @@ const WorkForm =({minionId})=>{
     return(
         <div>
             <h3>New Work</h3>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <label>
                     Title:
                     <input type='text' name='title' valie ={formData.title} onChange={handleChange} />

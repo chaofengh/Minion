@@ -27,7 +27,7 @@ const WorkItem = ({work})=>{
     return(
         <div>
             {isEditing?(
-                <form>
+                <form onSubmit={handleSubmit}>
                     <input type='text' name='title' value={formData.title} onChange={handleChange} />
                     <input type='text' name='description' value={formData.description} onChange ={handleChange} />
                     <input type='number' name='hours' value ={formData.hours} onChange={handleChange} />

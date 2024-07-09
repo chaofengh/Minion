@@ -1,6 +1,6 @@
 import React, {useEffect,useState} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { fetchWork,selectWork,selectLoading,selectError } from '../store/worksSlice';
+import { fetchWork,selectWork,selectError } from '../store/worksSlice';
 import WorkForm from './WorkForm';
 import WorkItem from './WorkItem'
 import { selectloading } from '../store/SelectedMinion';
