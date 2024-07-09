@@ -1,0 +1,16 @@
+.idea-detail {
+    border: 1px solid #ccc;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  
+  .idea-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+  }
+  
+  button {
+    margin-top: 16px;
+  }
+  

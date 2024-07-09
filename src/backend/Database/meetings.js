@@ -1,4 +1,3 @@
-const { type } = require('@testing-library/user-event/dist/type');
 const faker = require('faker');
 
 let meetingIdCounter = 1;
