@@ -1,19 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './frontend/components/Home';
 import AllMinions from './frontend/components/AllMinions';
-import AllIdeas from './frontend/components/AllIdeas.js';
+import MinionDetail from './frontend/components/MinionDetail';
+import AllIdeas from './frontend/components/AllIdeas';
 import AllMeetings from './frontend/components/AllMeetings';
 
 const App = () => {
   return (
     <Router>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/minions" component={AllMinions} />
-        <Route path="/ideas" component={AllIdeas} />
-        <Route path="/meetings" component={AllMeetings} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/minions" element={<AllMinions />} />
+        <Route path = 'minions/:id' element={<MinionDetail/>}/>
+        <Route path="/ideas" element={<AllIdeas />} />
+        <Route path="/meetings" element={<AllMeetings />} />
+      </Routes>
     </Router>
   );
 };

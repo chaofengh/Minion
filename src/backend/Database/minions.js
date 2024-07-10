@@ -1,3 +1,4 @@
+
 const { faker } = require('@faker-js/faker');
 
 // fake is a module that generates fake data

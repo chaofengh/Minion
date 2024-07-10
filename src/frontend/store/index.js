@@ -11,7 +11,7 @@ const store = configureStore({
     minions: minionsReducer,
     ideas: ideasReducer,
     meetings: meetingsReducer,
-    works:workReducer,
+    work:workReducer,
     selectedMinion: selectedMinionReducer,
     selectedIdea:selectedIdea
   },

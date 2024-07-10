@@ -1,0 +1,35 @@
+.work-form {
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.work-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.work-form input,
+.work-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #4c4c4c;
+    border-radius: 5px;
+    background-color: #2c2c2c;
+    color: #ffffff;
+}
+
+.work-form button {
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.work-form button:hover {
+    background-color: #c0392b;
+}

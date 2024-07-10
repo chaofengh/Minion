@@ -4,7 +4,7 @@ const findDataArrayByName = (db, name) => {
       return db.allMinions;
     case 'ideas':
       return db.allIdeas;
-    case 'works':
+    case 'work':
       return db.allWork;
     case 'meetings':
       return db.allMeetings;

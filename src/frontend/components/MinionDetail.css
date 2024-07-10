@@ -1,0 +1,28 @@
+.minion-detail {
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.minion-detail h2 {
+    color: #e74c3c;
+}
+
+.minion-detail p {
+    margin: 5px 0;
+}
+
+.minion-detail button {
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.minion-detail button:hover {
+    background-color: #c0392b;
+}

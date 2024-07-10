@@ -1,6 +1,7 @@
 import React,{useState} from "react";
 import { useDispatch } from "react-redux";
 import { deleteWork,updateWork } from "../store/worksSlice";
+import './WorkItem.css';
 
 const WorkItem = ({work})=>{
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const WorkItem = ({work})=>{
     }
 
     return(
-        <div>
+        <div className='work-item'>
             {isEditing?(
                 <form onSubmit={handleSubmit}>
                     <input type='text' name='title' value={formData.title} onChange={handleChange} />

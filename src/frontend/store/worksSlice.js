@@ -1,10 +1,9 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import { selectLoading } from "./minionsSlice";
 
-export const fetchWork = createAsyncThunk('work/addWork', async (work)=>{
-    const response = await fetch(`http://localhost:4001/api/minions/${work.minionId}/works`)
-    return await response.json()
-})
+export const fetchWork = createAsyncThunk('work/fetchWork', async (minionId) => {
+    const response = await fetch(`http://localhost:4001/api/minions/${minionId}/works`);
+    return await response.json();
+});
 
 export const addWork = createAsyncThunk('work/addWork', async(work)=>{
     const response = await fetch(`http://localhost:4001/api/minions/${work.minionId}/works`,{
@@ -19,7 +18,7 @@ export const addWork = createAsyncThunk('work/addWork', async(work)=>{
 export const updateWork = createAsyncThunk('work/updateWork', async (work)=>{
     const response = await fetch(`http://localhost:4001/api/minions/${work.minionId}/works/${work.id}`,{
         method:'PUT',
-        headers:{'Content-Type':application/json},
+        headers:{'Content-Type':'application/json'},
         body:JSON.stringify(work)
     })
 
@@ -39,7 +38,7 @@ const worksSlice= createSlice({
         loading:false,
         error:null
     },
-    reducer:{},
+    reducers:{},
     extraReducers:(builder)=>{
         builder
             .addCase(fetchWork.pending,(state)=>{
@@ -83,7 +82,7 @@ const worksSlice= createSlice({
             })
             .addCase(deleteWork.fulfilled,(state,action)=>{
                 state.loading = false;
-                state.work = state.work.filter(work => work.id !== action.payload.id)
+                state.work = state.work.filter(work => work.id !== action.payload)
             })
             .addCase(deleteWork.rejected,(state,action)=>{
                 state.loading = false;
@@ -92,7 +91,7 @@ const worksSlice= createSlice({
     }
 })
 
-export const selectWork = state => state.work.work;
+export const selectWork = (state) => state.work.work
 export const selectLoading = state => state.work.loading;
 export const selectError = state=>state.work.error;
 

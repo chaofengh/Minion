@@ -32,7 +32,7 @@ const AllIdeas = ()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {ideas.ma(idea =>(
+                    {ideas.map(idea =>(
                         <tr key ={idea.id} onClick = {()=> handleSelectedIdea(idea)} >
                             <td>{idea.name}</td>
                             <td>${idea.weeklyRevenue * idea.numWeeks}</td>

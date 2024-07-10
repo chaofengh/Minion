@@ -1,0 +1,93 @@
+/* AllMinions.css */
+
+#minions-landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #2d2d2d;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.label {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ff0000; /* Red color for the label */
+}
+
+.minions-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.minion {
+    width: 100px;
+    height: 100px;
+    background-color: #404040;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.minion:hover {
+    background-color: #505050;
+}
+
+.minion-name {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.minion-id {
+    text-align: center;
+    font-size: 12px;
+}
+
+.delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    color: #ff0000;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    color: #ff5050;
+}
+
+.add-button-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.add-button {
+    width: 50px;
+    height: 50px;
+    background-color: #404040;
+    border: none;
+    border-radius: 50%;
+    color: #ff0000;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.add-button:hover {
+    background-color: #505050;
+}

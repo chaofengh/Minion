@@ -1,0 +1,31 @@
+.work-list {
+    background-color: #3c3c3c;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+}
+
+.work-list h2 {
+    color: #e74c3c;
+}
+
+.work-item {
+    background-color: #4c4c4c;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.work-item button {
+    background-color: #e74c3c;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+.work-item button:hover {
+    background-color: #c0392b;
+}

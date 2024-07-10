@@ -50,7 +50,7 @@ minionsRouter.delete('/:minionId', (req, res, next) => {
   }
 });
 
-minionsRouter.use('./:minionId/works',workRouter)
+minionsRouter.use('/:minionId/works',workRouter)
 
 
 module.exports = minionsRouter;
