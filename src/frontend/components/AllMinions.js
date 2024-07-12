@@ -2,16 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchMinions, deleteMinion, selectMinions, selectLoading, selectError } from '../store/minionsSlice';
 import { Link } from 'react-router-dom';
-import MinionForm from './MinionForm.js'
-import './AllMinions.css'; // Assuming you have a CSS file for styling
+import MinionForm from './MinionForm';
+import './AllMinions.css';
 
 const AllMinions = () => {
   const dispatch = useDispatch();
   const minions = useSelector(selectMinions);
   const loading = useSelector(selectLoading);
   const error = useSelector(selectError);
-
-  const [showForm, setShowForm] = useState(false);
+  const [isAddMinion, setIsAddMinion] = useState(false);
 
   useEffect(() => {
     dispatch(fetchMinions());
@@ -22,26 +21,40 @@ const AllMinions = () => {
   };
 
   const handleAddMinion = () => {
-    setShowForm(true);
+    setIsAddMinion(true);
+  };
+
+  const handleCancelAddMinion = () => {
+    setIsAddMinion(false);
   };
 
   return (
-    <div className="all-minions">
-      <h1 className="title">Minions</h1>
+    <div>
+      <h1>Minions</h1>
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
-      <div className="minions-list">
-        {minions.map(minion => (
-          <div key={minion.id} className="minion-item">
-            <Link to={`/minions/${minion.id}`}>
-              <span>{minion.name}</span>
-            </Link>
-            <button className="delete-button" onClick={(e) => { e.stopPropagation(); handleDelete(minion.id) }}>X</button>
+      {isAddMinion ? (
+        <div> 
+          <MinionForm onCancel={handleCancelAddMinion} />
+        </div>
+      ) : (
+        <div>
+        <div className="minions-container">
+          {minions.map(minion => (
+            <div key={minion.id} className="minion-card">
+              <Link to={`/minions/${minion.id}`} >
+                <span>{minion.name}</span>
+                <span>ID #{minion.id}</span>
+              </Link>
+              <button onClick={(e) => { e.stopPropagation(); handleDelete(minion.id); }}>X</button>
+            </div>
+          ))}
+        </div>
+        <div className="add-minion">
+            <button onClick={handleAddMinion} className ='add-minion'>Add Minion</button>
           </div>
-        ))}
-        <button className="add-button" onClick={handleAddMinion}>+</button>
-      </div>
-      {showForm && <MinionForm />}
+        </div>
+      )}
     </div>
   );
 };

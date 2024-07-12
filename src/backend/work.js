@@ -17,7 +17,11 @@ workRouter.post('/',(req,res,next)=>{
     const newWork = req.body;
     newWork.minionId = req.params.minionId;
     const createdWork = addToDatabase('work',newWork)
-    res.status(201).send()
+    if(createdWork){
+        res.status(201).send(createdWork)
+    }else{
+        res.status(500).send()
+    }
 })
 
 workRouter.put('/:workId',(req,res,next)=>{ 

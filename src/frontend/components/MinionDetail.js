@@ -1,62 +1,60 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateMinion } from '../store/minionsSlice';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchMinionById, selectSelectedMinion, selectloading, selectError } from "../store/SelectedMinion";
+import { updateMinion } from "../store/minionsSlice";
 import WorkList from './WorkList';
 import './MinionDetail.css';
+import MinionForm from "./MinionForm";
 
-const MinionDetail = ({ minion }) => {
-    const dispatch = useDispatch();
-    const [isEditing, setIsEditing] = useState(false);
-    const [formData, setFormData] = useState({ ...minion });
+const MinionDetail = () => {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const minion = useSelector(selectSelectedMinion);
+  const loading = useSelector(selectloading);
+  const error = useSelector(selectError);
+  const [isEditing, setIsEditing] = useState(false);
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-        });
-    };
+  useEffect(() => {
+    dispatch(fetchMinionById(id));
+  }, [id, dispatch]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        dispatch(updateMinion(formData));
-        setIsEditing(false);
-    };
+  const handleUpdateMinion = (formData) => {
+    dispatch(updateMinion(formData));
+    setIsEditing(false);
+  };
 
-    return (
-        <div className="minion-detail">
-            <h2>Minion ID #{minion.id}</h2>
-            {isEditing ? (
-                <form onSubmit={handleSubmit}>
-                    <label>
-                        Name:
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} />
-                    </label>
-                    <label>
-                        Title:
-                        <input type="text" name="title" value={formData.title} onChange={handleChange} />
-                    </label>
-                    <label>
-                        Salary:
-                        <input type="number" name="salary" value={formData.salary} onChange={handleChange} />
-                    </label>
-                    <label>
-                        Weaknesses:
-                        <textarea name="weaknesses" value={formData.weaknesses} onChange={handleChange}></textarea>
-                    </label>
-                    <button type="submit">Save</button>
-                </form>
-            ) : (
-                <div>
-                    <p>Name: {minion.name}</p>
-                    <p>Title: {minion.title}</p>
-                    <p>Salary: {minion.salary}</p>
-                    <p>Weaknesses: {minion.weaknesses}</p>
-                    <button onClick={() => setIsEditing(true)}>Edit</button>
-                </div>
-            )}
-            <WorkList minionId={minion.id} />
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
+  if (!minion) {
+    return <p>No minion found</p>;
+  }
+
+  return (
+    <div className='minion-detail'>
+      <h2 className='minion-id'>Minion ID#{minion.id}</h2>
+      {isEditing ? (
+        <MinionForm
+          formData={minion}
+          onCancel={() => { setIsEditing(false); }}
+          onSubmit={handleUpdateMinion}
+        />
+      ) : (
+        <div className='minion-info'>
+          <p>Name: {minion.name}</p>
+          <p>Title: {minion.title}</p>
+          <p>Weakness: {minion.weaknesses}</p>
+          <button onClick={() => { setIsEditing(true); }} className='edit-button'>Edit</button>
         </div>
-    );
-};
+      )}
+      <WorkList minionId={minion.id} />
+    </div>
+  );
+}
 
 export default MinionDetail;

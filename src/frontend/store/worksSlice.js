@@ -12,7 +12,8 @@ export const addWork = createAsyncThunk('work/addWork', async(work)=>{
         body:JSON.stringify(work)
     })
 
-    return await response.json()
+    const createdWork = await response.json()
+    return createdWork
 })
 
 export const updateWork = createAsyncThunk('work/updateWork', async (work)=>{
@@ -25,10 +26,9 @@ export const updateWork = createAsyncThunk('work/updateWork', async (work)=>{
     return await response.json()
 })
 
-export const deleteWork = createAsyncThunk('work/deleteWork',async (workid,{getState})=>{
-    const minionId = getState().minions.selectedMinion.id;
-    await fetch(`http://localhost:4001/api/minions/${minionId}/works/${workid}`,{method:'DELETE'})
-    return workid
+export const deleteWork = createAsyncThunk('work/deleteWork',async (work)=>{
+    await fetch(`http://localhost:4001/api/minions/${work.minionId}/works/${work.id}`,{method:'DELETE'});
+    return work.id
 })
 
 const worksSlice= createSlice({

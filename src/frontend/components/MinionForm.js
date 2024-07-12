@@ -1,52 +1,70 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addMinion} from '../store/minionsSlice';
+import { addMinion } from '../store/minionsSlice';
+import './MinionDetail.css';  // Import the CSS file to ensure styles are applied
 
+const MinionForm = ({ onCancel, formData: initialData, onSubmit }) => {
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState(initialData || {
+    name: '',
+    title: '',
+    salary: null,
+    weaknesses: ''
+  });
 
-const MinionForm = ()=>{
-    const dispatch = useDispatch();
-    const [formData,setFormData] = useState({
-        name:'',
-        title:'',
-        salary:'',
-        weaknesses:''
-    })
+  useEffect(() => {
+    setFormData(initialData || {
+      name: '',
+      title: '',
+      salary: null,
+      weaknesses: ''
+    });
+  }, [initialData]);
 
-    const handleChange = (e)=>{
-        setFormData({
-            ...formData,
-            [e.target.name] : e.target.value
-        })
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onSubmit) {
+      onSubmit(formData);
+    } else {
+      dispatch(addMinion(formData));
+      onCancel();
     }
+  };
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        dispatch(addMinion(formData))
-    }
-    return(
-        <div>
-            <h2>New Minion</h2>
-            <form onSubmit = {handleSubmit}>
-                <label>
-                    Name:
-                    <input type ='text' name ='name' value = {formData.name} onChange={handleChange} />
-                </label>
-                <label>
-                    Title: 
-                    <input type='text' name ='title' value = {formData.title} onChange= {handleChange} />
-                </label>
-                <label>
-                    Salary:
-                    <input type ='number' name ='Salary' value ={formData.salary} onChange= {handleChange} />
-                </label>
-                <label>
-                    Weaknesses:
-                    <textarea name = 'weaknesses' value = {formData.weaknesses} onChange= {handleChange} ></textarea>
-                </label>
-                <button type ='submit'>Save</button>
-            </form>
+  return (
+    <div className="minion-form-container">
+      <h2 className="form-heading">{initialData ? 'Edit Minion' : 'New Minion'}</h2>
+      <form onSubmit={handleSubmit} className="minion-form">
+        <label className="form-label">
+          Name:
+          <input type="text" name="name" value={formData.name} onChange={handleChange} className="form-input" />
+        </label>
+        <label className="form-label">
+          Title:
+          <input type="text" name="title" value={formData.title} onChange={handleChange} className="form-input" />
+        </label>
+        <label className="form-label">
+          Salary:
+          <input type="number" name="salary" value={formData.salary} onChange={handleChange} className="form-input" />
+        </label>
+        <label className="form-label">
+          Weaknesses:
+          <textarea name="weaknesses" value={formData.weaknesses} onChange={handleChange} className="form-textarea"></textarea>
+        </label>
+        <div className="form-buttons">
+          <button type="button" onClick={onCancel} className="cancel-button">Cancel</button>
+          <button type="submit" className="save-button">Save</button>
         </div>
-    )
-}
+      </form>
+    </div>
+  );
+};
 
 export default MinionForm;

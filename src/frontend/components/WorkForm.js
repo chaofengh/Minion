@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux';
 import { addWork } from '../store/worksSlice';
 import './WorkForm.css';
 
-const WorkForm = ({ minionId }) => {
+const WorkForm = ({ minionId, onCancel }) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({ 
         title: '', 
         description: '', 
-        hours: '', 
+        hours: null, 
         minionId 
     });
 
@@ -22,24 +22,19 @@ const WorkForm = ({ minionId }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(addWork(formData));
+        onCancel();
     };
 
     return (
-        <form className="work-form" onSubmit={handleSubmit}>
-            <label>
-                Title:
-                <input type="text" name="title" value={formData.title} onChange={handleChange} />
-            </label>
-            <label>
-                Description:
-                <textarea name="description" value={formData.description} onChange={handleChange}></textarea>
-            </label>
-            <label>
-                Hours:
-                <input type="number" name="hours" value={formData.hours} onChange={handleChange} />
-            </label>
-            <button type="submit">Add Work</button>
-        </form>
+        <tr className="work-form">
+            <td><input type="text" name="title" value={formData.title} onChange={handleChange} /></td>
+            <td><input name="description" value={formData.description} onChange={handleChange} /></td>
+            <td><input type="number" name="hours" value={formData.hours} onChange={handleChange} /></td>
+            <td>
+                <button type="submit" onClick={handleSubmit}>Submit</button>
+                <button type='button' onClick={onCancel}>Cancel</button>
+            </td>
+        </tr>
     );
 };
 

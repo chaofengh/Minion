@@ -1,0 +1,25 @@
+.work-item td {
+    background-color: #222;
+    color: white;
+}
+
+.work-item input {
+    background-color: #444;
+    border: 1px solid #ccc;
+    color: white;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.work-item button {
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #f00;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.work-item button:hover {
+    background-color: #d00;
+}

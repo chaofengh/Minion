@@ -31,8 +31,8 @@ const selectedMinionsSlice = createSlice({
     }
 })
 
-export const selectSelectedMinion = state => state.selectSelectedMinion.minion;
-export const selectloading = state => state.selectSelectedMinion.loading;
-export const selectError = state => state.selectSelectedMinion.error;
+export const selectSelectedMinion = state => state.selectedMinion.minion;
+export const selectloading = state => state.selectedMinion.loading;
+export const selectError = state => state.selectedMinion.error;
 
 export default selectedMinionsSlice.reducer;

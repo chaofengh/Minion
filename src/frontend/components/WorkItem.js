@@ -1,50 +1,64 @@
-import React,{useState} from "react";
-import { useDispatch } from "react-redux";
-import { deleteWork,updateWork } from "../store/worksSlice";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteWork, updateWork } from '../store/worksSlice';
 import './WorkItem.css';
 
-const WorkItem = ({work})=>{
+const WorkItem = ({ work }) => {
     const dispatch = useDispatch();
-    const[isEditing,setIsEditing] = useState(false);
-    const [formData,setFormatData] = useState({...work})
-    
-    const handleChange = (e)=>{
-        setFormatData({
-            ...formData,
-            [e.target.name]:e.target.value
-        })
-    }
+    const [isEditing, setIsEditing] = useState(false);
+    const [formData, setFormData] = useState(work);
 
-    const handleSubmit = (e)=>{
+    const handleEditClick = () => {
+        setIsEditing(true);
+    };
+
+    const handleDelete = () => {
+        dispatch(deleteWork(work));
+    };
+
+    const handleCancelClick = () => {
+        setIsEditing(false);
+        setFormData(work);
+    };
+
+    const handleChange = (e) => {
         e.preventDefault();
-        dispatch(updateWork(formData))
-        setIsEditing(false)
-    }
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
 
-    const handleDelete =()=>{
-        dispatch(deleteWork(formData.id))
-    }
+    const handleSaveClick = () => {
+        dispatch(updateWork(formData));
+        setIsEditing(false);
+    };
 
-    return(
-        <div className='work-item'>
-            {isEditing?(
-                <form onSubmit={handleSubmit}>
-                    <input type='text' name='title' value={formData.title} onChange={handleChange} />
-                    <input type='text' name='description' value={formData.description} onChange ={handleChange} />
-                    <input type='number' name='hours' value ={formData.hours} onChange={handleChange} />
-                    <button type='submit'>Save</button>
-                </form>
-            ):(
-                <div>
-                    <button onClick={handleDelete}>Delete</button>
-                    <h4>{work.title}</h4>
-                    <p>{work.description}</p>
-                    <p>{work.hours}</p>
-                    <button onClick={()=>setIsEditing(true)}>Edit</button>
-                </div>
+    return (
+        <tr className='work-item'>
+            {isEditing ? (
+                <>
+                    <td><input type='text' name='title' value={formData.title} onChange={handleChange} /></td>
+                    <td><input type='text' name='description' value={formData.description} onChange={handleChange} /></td>
+                    <td><input type='number' name='hours' value={formData.hours} onChange={handleChange} /></td>
+                    <td>
+                        <button onClick={handleSaveClick}>Save</button>
+                        <button onClick={handleCancelClick}>Cancel</button>
+                    </td>
+                </>
+            ) : (
+                <>
+                    <td>{work.title}</td>
+                    <td>{work.description}</td>
+                    <td>{work.hours}</td>
+                    <td>
+                        <button onClick={handleDelete}>Delete</button>
+                        <button onClick={handleEditClick}>Edit</button>
+                    </td>
+                </>
             )}
-        </div>
-    )
-}
+        </tr>
+    );
+};
 
 export default WorkItem;

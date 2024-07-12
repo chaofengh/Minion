@@ -1,31 +1,42 @@
 .work-list {
-    background-color: #3c3c3c;
-    border-radius: 5px;
-    padding: 20px;
     margin: 20px;
+    color: white;
 }
 
-.work-list h2 {
-    color: #e74c3c;
+.work-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-left: 1px solid #ccc; /* Add left border to the table */
+    border-right: 1px solid #ccc; /* Add right border to the table */
 }
 
-.work-item {
-    background-color: #4c4c4c;
-    border-radius: 5px;
+.work-table th, .work-table td {
+    border-top: 1px solid #ccc; /* Add top border to the table cells */
+    border-bottom: 1px solid #ccc; /* Add bottom border to the table cells */
     padding: 10px;
-    margin: 10px 0;
+    text-align: center; /* Center-align text */
+    vertical-align: middle; /* Center-align vertically */
 }
 
-.work-item button {
-    background-color: #e74c3c;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
+.work-table th {
+    background-color: #333;
+    color: white;
+}
+
+.work-table td {
+    background-color: #222;
+}
+
+
+.add-button, .work-item button {
+    margin: 5px;
     padding: 5px 10px;
-    margin-top: 10px;
+    background-color: #f00;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
-.work-item button:hover {
-    background-color: #c0392b;
+.add-button:hover, .work-item button:hover {
+    background-color: #d00;
 }
