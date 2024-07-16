@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Meeting from './Meeting';
 
@@ -6,50 +7,40 @@ import {
   fetchMeetings,
   createMeeting,
   deleteAllMeetings,
-  selectMeetings
+  selectMeetings,
+  selectLoading,
+  selectError
 } from '../store/meetingsSlice';
 import './AllMeetings.css';
 
 const AllMeetings = () => {
   const dispatch = useDispatch();
   const meetings = useSelector(selectMeetings);
-
-
-  const [timeoutId, setTimeoutId] = useState(null);
+  const loading = useSelector(selectLoading);
+  const error = useSelector(selectError);
 
   useEffect(() => {
     dispatch(fetchMeetings());
-
-    const addMeeting = () => {
+    const intervalId = setInterval(() => {
       dispatch(createMeeting());
-      const newTimeoutId = setTimeout(addMeeting, Math.random() * 10000 + 3000);
-      setTimeoutId(newTimeoutId);
-    };
+    }, Math.random() * 10000 + 3000);
 
-    addMeeting();
-
-    // Cleanup function to clear timeout
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
-  }, [dispatch, timeoutId]); // Adding timeoutId as a dependency
+    return () => clearInterval(intervalId);
+  }, [dispatch]);
 
   const handleDeleteAll = () => {
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
     dispatch(deleteAllMeetings());
   };
 
-  const allMeetings = meetings.map(meeting => (
+  const allMeetings = meetings.map((meeting) => (
     <Meeting key={meeting.id} day={meeting.day} time={meeting.time} note={meeting.note} />
   ));
 
   return (
     <div id="meetings-landing">
       <div className="label meetings-label">Meetings</div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
       <div id="meetings-table">
         <table>
           <thead>

@@ -63,6 +63,7 @@
   cursor: pointer;
   border-radius: 50px;
   transition: background 0.3s ease, transform 0.3s ease;
+  width: 200px;
 }
 
 .add-minion button:hover {

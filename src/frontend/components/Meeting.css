@@ -1,0 +1,13 @@
+tr {
+    background-color: #2c3e50; /* Dark background color for table rows */
+  }
+  
+  td {
+    padding: 10px; /* Padding inside the cells */
+    border: 1px solid #34495e; /* Dark border color */
+  }
+  
+  td:nth-child(odd) {
+    background-color: #34495e; /* Darker background color for odd-numbered cells */
+  }
+  
