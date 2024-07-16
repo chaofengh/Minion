@@ -1,16 +1,62 @@
 .idea-detail {
-    border: 1px solid #ccc;
-    padding: 16px;
-    margin-top: 16px;
-  }
-  
-  .idea-stats {
+    background-color: #2c2c2c;
+    border: 1px solid #e74c3c;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.idea-id {
+    color: #e74c3c;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.idea-info {
+    color: #fff;
+    font-size: 1.1em;
+    line-height: 1.6em;
+    padding: 10px;
+}
+
+.idea-info p {
+    margin: 10px 0;
+}
+
+.edit-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.edit-button:hover {
+    background-color: #c0392b;
+}
+
+.form-buttons {
     display: flex;
     justify-content: space-between;
-    margin-top: 16px;
-  }
-  
-  button {
-    margin-top: 16px;
-  }
-  
+    margin-top: 20px;
+}
+
+.cancel-button, .save-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.cancel-button:hover, .save-button:hover {
+    background-color: #c0392b;
+}
