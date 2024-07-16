@@ -32,7 +32,7 @@ const MinionDetail = () => {
   }
 
   if (!minion) {
-    return <p>No minion found</p>;
+    return <p>Minion not Exist</p>;
   }
 
   return (
@@ -41,18 +41,21 @@ const MinionDetail = () => {
       {isEditing ? (
         <MinionForm
           formData={minion}
-          onCancel={() => { setIsEditing(false); }}
+          onCancel={() => { setIsEditing(false) }}
           onSubmit={handleUpdateMinion}
         />
       ) : (
         <div className='minion-info'>
-          <p>Name: {minion.name}</p>
-          <p>Title: {minion.title}</p>
-          <p>Weakness: {minion.weaknesses}</p>
-          <button onClick={() => { setIsEditing(true); }} className='edit-button'>Edit</button>
+          <p><strong>Name:</strong> {minion.name}</p>
+          <p><strong>Title:</strong> {minion.title}</p>
+          <p><strong>Weakness:</strong> {minion.weaknesses}</p>
+          <button onClick={() => { setIsEditing(true) }} className='edit-button'>Edit</button>
         </div>
       )}
-      <WorkList minionId={minion.id} />
+      <div className="work-section">
+        <h3>Work</h3>
+        <WorkList minionId={minion.id} />
+      </div>
     </div>
   );
 }
