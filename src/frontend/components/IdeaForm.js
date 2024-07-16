@@ -1,95 +1,102 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import {addIdea, updateIdea } from '../store/ideasSlice';
+import { addIdea, updateIdea } from '../store/ideasSlice';
 import './IdeaForm.css';
 import { formatCash } from '../../utils';
 
-const IdeaForm =({idea,onCancel,onSubmit})=>{
+const IdeaForm = ({ idea, onCancel, onSubmit }) => {
     const dispatch = useDispatch();
-    const [formData,setformData] = useState({
-        name:'',
-        description:'',
-        weeklyRevenue:'',
-        numWeeks:''
-    })
+    const [formData, setformData] = useState({
+        name: '',
+        description: '',
+        weeklyRevenue: '',
+        numWeeks: ''
+    });
 
-    const expectedReturn = formData.numWeeks * formData.weeklyRevenue
+    const expectedReturn = formData.numWeeks * formData.weeklyRevenue;
 
-    useEffect(()=>{
-        if(idea){
-            setformData(idea)
+    useEffect(() => {
+        if (idea) {
+            setformData(idea);
         }
-    },[idea])
+    }, [idea]);
 
-    const handleChange= (e)=>{
+    const handleChange = (e) => {
         setformData({
             ...formData,
-            [e.target.name]:e.target.value
-        })
-    }
+            [e.target.name]: e.target.value
+        });
+    };
 
-    const handleSubmit=(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (expectedReturn < 1000000) {
             window.alert('Expected return needs to be 1 million dollars or more.');
             return;
         }
-        if(idea){
-            dispatch(updateIdea(formData))
-            onSubmit()
-        }else{
-            dispatch(addIdea(formData))
+        if (idea) {
+            dispatch(updateIdea(formData));
+            onSubmit();
+        } else {
+            dispatch(addIdea(formData));
         }
-        onCancel()
-    }
+        onCancel();
+    };
 
-    return(
-        <div className='idea-form-container' >
-            <h2>{idea? 'Edit Idea': 'New Idea'}</h2>
+    return (
+        <div className='idea-form-container'>
+            <h2 className='form-title'>{idea ? 'Edit Idea' : 'New Idea'}</h2>
             <form onSubmit={handleSubmit} className='idea-form'>
-                <label>
+                <label className='form-label'>
                     Name:
                     <input
                         type='text'
                         name='name'
                         value={formData.name}
                         onChange={handleChange}
+                        className='form-input'
                     />
                 </label>
-                <label>
+                <label className='form-label'>
                     Description:
                     <textarea
                         name='description'
                         value={formData.description}
-                        onChange={handleChange}>
+                        onChange={handleChange}
+                        className='form-textarea'>
                     </textarea>
                 </label>
-                <label>
+                <label className='form-label'>
                     Revenue/Week:
-                    <input 
+                    <input
                         type='number'
                         name='weeklyRevenue'
                         value={formData.weeklyRevenue}
                         onChange={handleChange}
+                        className='form-input'
                     />
                 </label>
-                <label>
+                <label className='form-label'>
                     # of Weeks:
-                    <input 
+                    <input
                         type='number'
                         name='numWeeks'
                         value={formData.numWeeks}
                         onChange={handleChange}
-                     />
+                        className='form-input'
+                    />
                 </label>
-                <label>Expected Return: {formatCash(expectedReturn)}</label>
-                <div className='form-buttons' >
+                <label className='form-label'>
+                    Expected Return: 
+                    <span className='expected-return'>{formatCash(expectedReturn)}</span>
+                </label>
+                <div className='form-buttons'>
                     <button type='button' onClick={onCancel} className='cancel-button'>Cancel</button>
                     <button type='submit' className='save-button'>Save</button>
                 </div>
             </form>
         </div>
-    )
+    );
 }
 
 export default IdeaForm;

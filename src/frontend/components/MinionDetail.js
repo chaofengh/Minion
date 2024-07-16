@@ -36,25 +36,36 @@ const MinionDetail = () => {
   }
 
   return (
-    <div className='minion-detail'>
-      <h2 className='minion-id'>Minion ID#{minion.id}</h2>
-      {isEditing ? (
-        <MinionForm
-          formData={minion}
-          onCancel={() => { setIsEditing(false) }}
-          onSubmit={handleUpdateMinion}
-        />
-      ) : (
-        <div className='minion-info'>
-          <p><strong>Name:</strong> {minion.name}</p>
-          <p><strong>Title:</strong> {minion.title}</p>
-          <p><strong>Weakness:</strong> {minion.weaknesses}</p>
-          <button onClick={() => { setIsEditing(true) }} className='edit-button'>Edit</button>
+    <div className='minion-detail-container'>
+      <div className='minion-detail'>
+        <h2 className='minion-id'>Minion ID#{minion.id}</h2>
+        {isEditing ? (
+          <MinionForm
+            formData={minion}
+            onCancel={() => { setIsEditing(false) }}
+            onSubmit={handleUpdateMinion}
+          />
+        ) : (
+          <div className='minion-info'>
+            <div className='minion-detail-field'>
+              <strong>Name: </strong>
+              <span>{minion.name}</span>
+            </div>
+            <div className='minion-detail-field'>
+              <strong>Title: </strong>
+              <span>{minion.title}</span>
+            </div>
+            <div className='minion-detail-field'>
+              <strong>Weakness: </strong>
+              <span>{minion.weaknesses}</span>
+            </div>
+            <button onClick={() => { setIsEditing(true) }} className='edit-button'>Edit</button>
+          </div>
+        )}
+        <div className="work-section">
+          <h3>Work</h3>
+          <WorkList minionId={minion.id} />
         </div>
-      )}
-      <div className="work-section">
-        <h3>Work</h3>
-        <WorkList minionId={minion.id} />
       </div>
     </div>
   );

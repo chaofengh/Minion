@@ -1,37 +1,62 @@
+.minion-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #2c2c2c;
+}
+
 .minion-detail {
-  background-color: #2c3e50;
-  padding: 20px;
+  background-color: #333;
+  border: 1px solid #e74c3c;
   border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
-  color: #ecf0f1;
+  padding: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
 .minion-id {
-  text-align: center;
   color: #e74c3c;
+  text-align: center;
   margin-bottom: 20px;
+  font-size: 1.5em;
 }
 
 .minion-info {
-  background-color: #34495e;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
 }
 
-.minion-info p {
-  margin: 10px 0;
+.minion-detail-field {
+  display: contents;
+}
+
+.minion-detail-field strong {
+  justify-self: end;
+  margin-right: 10px;
+}
+
+.minion-detail-field span {
+  justify-self: start;
+  font-weight: normal;
 }
 
 .edit-button {
   background-color: #e74c3c;
-  color: #fff;
+  color: white;
   border: none;
-  padding: 10px 20px;
   border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1em;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  display: block;
+  width: 100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .edit-button:hover {
@@ -45,128 +70,4 @@
 .work-section h3 {
   color: #ecf0f1;
   margin-bottom: 10px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-table, th, td {
-  border: 1px solid #34495e;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background-color: #34495e;
-  color: #ecf0f1;
-}
-
-td {
-  background-color: #2c3e50;
-  color: #ecf0f1;
-}
-
-.add-work-button {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-work-button:hover {
-  background-color: #c0392b;
-}
-
-.delete-button, .edit-work-button {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-right: 5px;
-}
-
-.delete-button:hover, .edit-work-button:hover {
-  background-color: #c0392b;
-}
-
-.minion-form {
-  background-color: #2c3e50;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.minion-form-container {
-  background-color: #2c3e50;
-  padding: 20px;
-  border-radius: 10px;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.form-heading {
-  text-align: center;
-  color: #ecf0f1;
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 10px;
-  color: #ecf0f1;
-}
-
-.form-input,
-.form-textarea {
-  width: calc(100% - 20px);
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.form-buttons {
-  display: flex;
-  justify-content: space-between;
-}
-
-.cancel-button {
-  background-color: #e74c3c;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.cancel-button:hover {
-  background-color: #c0392b;
-}
-
-.save-button {
-  background-color: #2ecc71;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.save-button:hover {
-  background-color: #27ae60;
 }

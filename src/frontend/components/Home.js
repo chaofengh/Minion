@@ -8,10 +8,10 @@ const Home = () => {
       <h1>Boss Machine</h1>
       <div className='icon-container'>
         <Link to='/minions' className='icon'>
-          <span>Minions.exe</span>
+          <span>Minions</span>
         </Link>
         <Link to='/ideas' className='icon'>
-          <span>Million $ Ideas.exe</span>
+          <span>Million Dollar Idea</span>
         </Link>
         <Link to='/meetings' className='icon'>
           <span>Meetings.exe</span>
