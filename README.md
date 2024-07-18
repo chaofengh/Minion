@@ -64,6 +64,11 @@ The backend server should now be running on `http://localhost:4001`.
     ```bash
     npm start
     ```
+### Backend Setup
+1. start the server.
+    ```bash
+    node server.js
+    ```
 
 The frontend should now be running on `http://localhost:3000`.
 
